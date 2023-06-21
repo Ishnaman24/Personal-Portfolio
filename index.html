@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .scrollable-section {
+            height: 600px;
+            overflow: auto;
+        }
+
+        body {
+            background-color: rgb(0, 0, 33);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 80px;
+            background-color: rgb(18, 18, 62);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            list-style: none;
+            margin: 0 23px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: rgb(187, 135, 236);
+        }
+
+        nav ul li a:hover {
+            color: white;
+            font-size: 1.4rem;
+        }
+
+        main hr {
+            border: 0;
+            background: #9c97f1;
+            height: 1.2px;
+            margin: 20px 84px;
+
+        }
+
+        .left {
+            font-size: 1.5rem;
+        }
+
+        .firstSection {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 120px 0;
+
+        }
+
+        .firstSection>div {
+            width: 30%;
+
+        }
+
+        .leftSection {
+
+            font-size: 3rem;
+
+
+        }
+
+
+        .leftSection .bpn {
+
+            padding: 12px;
+            background: #1e2167;
+            color: white;
+            border: 2px solid white;
+            border-radius: 6px;
+            font-size: 20px;
+            cursor: pointer;
+
+
+        }
+
+        .rightSection img {
+            width: 80%;
+
+
+        }
+
+        .purple {
+            color: blueviolet;
+        }
+
+        .text-gray {
+            color: gray;
+        }
+
+        #element {
+            color: blueviolet;
+        }
+
+        .secondSection {
+            max-width: 80vw;
+            margin: auto;
+            height: 80vh;
+        }
+
+        .secondSection h1 {
+            font-size: 1.3rem;
+        }
+
+        .secondSection .box {
+            background: white;
+            width: 77vw;
+            height: 2px;
+            margin: 56px 0;
+            display: flex;
+        }
+
+        .secondSection .vertical {
+            height: 93px;
+            width: 1px;
+            background-color: white;
+            margin: 0 140px;
+        }
+
+        .image-top {
+            width: 23px;
+            position: relative;
+            top: -32px;
+            left: -9px;
+        }
+
+        .vertical-title {
+            position: relative;
+            top: 75px;
+            width: 150px;
+
+
+        }
+
+        .vertical-desc {
+            position: relative;
+            top: 86px;
+            color: grey;
+            width: 150px;
+            font-size: 13px;
+
+        }
+
+        /* @media screen and (max-width: 1400px) {
+
+            .firstSection {
+                flex-direction: column-reverse;
+            }
+
+            .box {
+                flex-direction: column;
+            }
+
+            .secondSection .vertical {
+                height: unset;
+            }
+
+            .vertical-title,
+            .vertical-desc {
+                left: 45px;
+            }
+
+            .secondSection.box {
+                width: 50vw;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            .leftSection {
+                width: 100% !important;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .rightSection {
+                width: 721px !important;
+            }
+
+
+
+        } */
+
+        #About {
+            padding: 80px 50px;
+            color: white;
+
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .about-col1 {
+            flex-basis: 40%;
+        }
+
+        .about-col1 img {
+            width: 100%;
+            border-radius: 182px;
+
+        }
+
+        .about-col2 {
+            flex-basis: 56%;
+        }
+
+        .subtitle {
+            font-size: 60px;
+            font-weight: 600;
+            color: blueviolet;
+
+        }
+
+        .tab-titles {
+            display: flex;
+            margin: 20px 0 40px;
+        }
+
+        .tab-links {
+            margin-right: 50px;
+            font-size: 30 px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab-links::after {
+            content: '';
+            width: 0;
+            height: 3px;
+            background: blueviolet;
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            transition: 0.5s;
+        }
+
+        .tab-links.active-link::after {
+            width: 50%;
+        }
+
+        .tab-contents ul li {
+            list-style: none;
+            margin: 10px 0;
+        }
+
+        .tab-contents ul li span {
+            color: blueviolet;
+            font-size: 18px;
+        }
+
+        .tab-contents {
+            display: none;
+        }
+
+        .tab-contents.active-tab {
+            display: block;
+
+        }
+
+        #services {
+            padding: 30px 80px;
+
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+        }
+
+        .services-list div {
+            background: #1e2167;
+            padding: 40px;
+            font-size: 15px;
+            font-weight: 300;
+            border-radius: 10px;
+            transition: background 0.5s, transform 0.5s;
+        }
+
+        .services-list div i {
+            font-size: 50px;
+            margin-bottom: 30px;
+        }
+
+        .services-list div h2 {
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .services-list div a {
+            text-decoration: none;
+            color: wheat;
+            font-size: 16px;
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .services-list div:hover {
+            background: blueviolet;
+            transform: translateY(-10px);
+        }
+
+        #Portfolio {
+            padding: 50px 80px;
+        }
+
+        .work-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-gap: 40px;
+            margin-top: 50px;
+
+        }
+
+        .work {
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: fill;
+            display: block;
+            transition: transform 0.5s;
+        }
+
+        .layer {
+            width: 100%;
+            height: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), blueviolet);
+            border-radius: 10px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 0 0;
+            text-align: center;
+            font-size: 16px;
+            transition: height 0.5s;
+
+        }
+
+        .layer h3 {
+            font-weight: 50000;
+            margin-bottom: 20px;
+        }
+
+        .layer a {
+            margin-top: 20px;
+            color: blueviolet;
+            text-decoration: none;
+            font-size: 20px;
+            line-height: 60px;
+            background: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50px;
+            text-align: center;
+        }
+
+        .work:hover img {
+            transform: scale(1.1);
+        }
+
+        .work:hover .layer {
+            height: 100%;
+        }
+
+        .btn {
+            display: block;
+            margin: 50px auto;
+            width: fit-content;
+            border: 1px solid blueviolet;
+            padding: 14px 50px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            transition: background 0.5s;
+        }
+
+        .btn:hover {
+            background: blueviolet;
+        }
+
+        .contact-left {
+            flex-basis: 35%;
+            padding: 0 69px
+        }
+
+        .contact-right {
+            flex-basis: 55%;
+        }
+
+        .contact-left p {
+            margin-top: 30px;
+        }
+
+        .contact-left p i {
+            color: blueviolet;
+            margin-right: 15px;
+            font-size: 25px;
+        }
+
+        .icons {
+            margin-top: 30px;
+        }
+
+        .icons a {
+            text-decoration: none;
+            font-size: 30px;
+            margin-right: 15px;
+            color: white;
+            display: inline-block;
+            transition: transform 0.5s;
+        }
+
+        .icons a:hover {
+            color: blueviolet;
+            transform: translateY(-5px);
+
+        }
+
+        .btn.btn2 {
+            display: inline-block;
+            color: white;
+
+
+        }
+
+        .contact-right form {
+            width: 100%;
+        }
+
+        form input,
+        form textarea {
+            width: 87%;
+            border: 0;
+            outline: none;
+            background: #1e2167;
+            padding: 15px;
+            margin: 15px 0;
+            color: white;
+            font-size: 18px;
+            border-radius: 6px;
+        }
+
+        form .btn2 {
+            padding: 14px 60px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            background: blueviolet;
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            padding: 25px 0;
+            background: #1e2167;
+            font-weight: 400;
+            margin-top: 20px;
+        }
+
+        /* @media only screen and (max-with: 600px){
+
+         } */
+    </style>
+    <script src="https://kit.fontawesome.com/3d4b870c16.js" crossorigin="anonymous"></script>
+    <script>
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">Ishnaman's Portfolio</div>
+            <div class="right">
+                <ul>
+                    <li><a href="#" onclick="scrollToSection('home')">Home</a></li>
+                    <li><a href="#" onclick="scrollToSection('experience-section')">Experience</a></li>
+                    <li><a href="#About">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#Portfolio">Projects</a></li>
+                    <li><a href="#contact">Contact me</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="home" class="firstSection">
+            <div class="leftSection">
+                <div>Hi, My name is <span class="purple">Ishnaman</span> </div>
+                <div>and I am a</div>
+
+                <span id="element"></span>
+                <div class="buttons">
+                    <a href="https://github.com/Ishnaman24/Ishnaman24">
+                        <button class="bpn">Go to Github </button></a>
+                </div>
+            </div>
+            <div class="rightSection">
+                <img src="images/bg.png" alt="">
+            </div>
+
+        </section>
+        <hr>
+        <section id="experience-section" class="secondSection">
+            <span class="text-gray">All of my past work </span>
+            <h1>Work Experience</h1>
+
+            <div class="box">
+                <div class="vertical">
+                    <img class="image-top" src="htm.png" alt="">
+                    <div class="vertical-title">
+                        HTML Developer (2019-2020)
+                    </div>
+                    <div class="vertical-desc">
+                        As an HTML developer, I focus on creating well-structured, visually appealing, and accessible
+                        web pages using HTML. My expertise lies in crafting clean and efficient code that ensures a
+                        seamless user experience across different devices and browsers.
+                    </div>
+                </div>
+
+                <div class="vertical">
+                    <img class="image-top" src="cyber.png" alt="">
+                    <div class="vertical-title">
+                        Cyber Security Analyst (2022-Present)
+                    </div>
+                    <div class="vertical-desc">
+                        As a Cybersecurity Analyst, I work to safeguard organizations' digital assets by proactively
+                        monitoring for threats, conducting vulnerability assessments, managing security infrastructure,
+                        enforcing policies, and responding to incidents effectively. I also stay informed about emerging
+                        security trends and contribute to improving the organization's overall security posture.
+                    </div>
+                </div>
+                <div class="vertical">
+                    <img class="image-top" src="data.png" alt="">
+                    <div class="vertical-title">
+                        Data Analyst (2023-Present)
+                    </div>
+                    <div class="vertical-desc">
+                        As a Data Analyst, I leverage my skills in data collection, analysis, visualization, and
+                        interpretation to extract valuable insights from complex datasets. I support decision-making
+                        processes by providing accurate and actionable recommendations based on statistical analysis and
+                        data-driven insights.
+                    </div>
+                </div>
+                <div class="vertical">
+                    <img class="image-top" src="cdac.png" alt="">
+                    <div class="vertical-title">
+                        Intern at CDAC (2023-Present)
+                    </div>
+                    <div class="vertical-desc">
+                        As an intern at CDAC, I have the chance to work on real-world projects, expand my technical
+                        skills, collaborate with professionals, and gain exposure to advanced technologies. It is an
+                        excellent opportunity to kickstart my career in the field of advanced computing and contribute
+                        to the impactful work carried out by CDAC.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <hr>
+        <div id="About">
+            <div class="container">
+                <div class="row">
+                    <div class="about-col1">
+                        <img src="me too.jpg" alt="">
+                    </div>
+                    <div class="about-col2">
+                        <h1 class="subtitle">About Me</h1>
+                        <p>Allow me to introduce myself. I'm an exceptionally diligent individual who thrives on
+                            challenges and constantly seeks knowledge. With an insatiable curiosity, I dive headfirst
+                            into new experiences, eager to learn and grow. Whether it's tackling complex problems or
+                            embracing unfamiliar territories, I'm always up for the task. I believe that hard work and
+                            determination pave the path to success, and I'm not one to shy away from putting in the
+                            effort required. So, let's embark on a journey of discovery together and conquer whatever
+                            obstacles come our way!</p>
+
+                        <div class="tab-titles">
+                            <p class="tab-links active-link " onclick="opentab('skills')">Skills</p>
+                            <p class="tab-links" onclick="opentab('hobbies')">Hobbies</p>
+                            <p class="tab-links" onclick="opentab('education')">Education</p>
+
+                        </div>
+                        <div class="tab-contents active-tab" id="skills">
+                            <ul>
+                                <li><span>C C++</span><br>Algorithm efficiency</li>
+                                <li><span>Hacking</span><br>vulnerability assessment and Penetration Testing</li>
+                                <li><span>HTML & CSS</span><br>Website Building</li>
+                                <li><span>Audacity</span><br>Music Design</li>
+                                <li><span>MS Powerpoint</span><br>Presentations</li>
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="hobbies">
+                            <ul>
+                                <li><span></span><br>Playing Football</li>
+                                <li><span></span><br>Writing Poetry</li>
+                                <li><span></span><br>Listening to Music</li>
+                                <li><span></span><br>Formal Debates</li>
+                                <li><span></span><br>Watching Movies</li>
+                            </ul>
+                        </div>
+                        <div class="tab-contents" id="education">
+                            <ul>
+                                <li><span>2021-Current</span><br>BTech at Thapar Institute of Engineering and Technology
+                                </li>
+                                <li><span>SSC</span><br>Stepping Stones Senior Seconday School</li>
+                                <li><span>Matric</span><br>Manav Mangal Smart School</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="services">
+            <div class="container">
+                <h1 class="subtitle">My Services</h1>
+                <div class="services-list">
+                    <div>
+                        <i class="fa-solid fa-lock"></i>
+                        <h2>Website Testing </h2>
+                        <p>You are to provide me with a website and accordingly I will run some tests on it to check
+                            whether the given site is secure or not. Two major tests that I will perform are Penetration
+                            Testing and vulnerability Assessment</p>
+                        <a href="#">Learn more</a>
+                    </div>
+                    <div>
+                        <i class="fa-sharp fa-solid fa-code"></i>
+                        <h2>Web Design </h2>
+                        <p>Here I will be providing an apt design for your website in regardance to the your
+                            requirement, the tools that will be used are HTML, CSS and JS</p>
+                        <a href="#">Learn more</a>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                        <h2>Data Analytics </h2>
+                        <p>Given upon the data that will be provided by your side, I will provide you with the required
+                            model based on your need and suitable to analyse and provide the best results from the given
+                            data</p>
+                        <a href="#">Learn more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div id="Portfolio">
+            <div class="container">
+                <h1 class="subtitle">My Projects</h1>
+                <div class="work-list">
+                    <div class="work">
+                        <img src="ff.jpg">
+                        <div class="layer">
+                            <h3>Titanic Dataset Exploration</h3>
+                            <p>Predicted the number of passengers that survived.</p>
+                            <a href="#"><i class="fa-sharp fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="flower.png" alt="">
+                        <div class="layer">
+                            <h3>Iris Dataset Exploration</h3>
+                            <p>Correctly predicted the species of the flower.</p>
+                            <a href="#"><i class="fa-sharp fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+                        <img src="doctor.png" alt="">
+                        <div class="layer">
+                            <h3>Vulnerability Testing</h3>
+                            <p>Found vulnerabilities in the site and implemented changes to enhance security</p>
+                            <a href="#"><i class="fa-sharp fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="work">
+
+                        <img src="pp.png" alt="">
+                        <div class="layer">
+                            <h3>Sticky Keys</h3>
+                            <p>All the keys pressed will be displayed on my screen(Currently in development).</p>
+                            <a href="#"><i class="fa-sharp fa-solid fa-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn">See more</a>
+            </div>
+        </div>
+        <hr>
+        <div id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="contact-left">
+                        <h1 class="subtitle">Contact Me</h1>
+                        <p> <i class="fa-solid fa-paper-plane"></i>ishnamanseth24@gmail.com</p>
+                        <p> <i class="fa-solid fa-phone"></i>+91 8699002049</p>
+                        <div class="icons">
+                            <a href="https://linkedin.com/in/ishnaman-seth-13950922a"><i
+                                    class="fa-brands fa-linkedin"></i></a>
+                            <a href="https://twitter.com/IshnamanS"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://instagram.com/ishnamansingh1207"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                        <a href="RESUME.pdf" download class="btn btn2">Download Resume</a>
+                    </div>
+                    <div class="contact-right">
+                        <form name="submit-to-google-sheet">
+                            <input type="text" name="Name" placeholder="Your Name" required>
+                            <input type="email" name="email" placeholder="Your Email" required>
+                            <textarea name="Message" rows="6" placeholder="Write a Message"></textarea>
+                            <button type="submit" class="btn btn2">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright © Ishnaman.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        var typed = new Typed('#element', {
+            strings: ['Cyber Security Analyst', 'Web Developer', 'Poet', 'Data Analyst', 'Photo Editor', 'Ethical Hacker'],
+            typeSpeed: 50,
+        });
+    </script>
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+
+        }
+    </script>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzJ-ijK7AY8OUbwXSVlPgYr4f5IrJEzifmJY4WdjLVVxPA3j3_zDSjir4idOnzwwRjG/exec'
+        const form = document.forms['submit-to-google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => console.log('Success!', response))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+
+</html>
